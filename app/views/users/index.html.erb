@@ -4,6 +4,7 @@
 	<% @users.each do |user| %>
 	<thead>
 		<tr>
+			<th>image</th>
 			<th>name</th>
 			<th>sex</th>
 			<th>age</th>
@@ -11,9 +12,10 @@
 	</thead>
 	<tbody>
 		<tr>
+			<td><%= attachment_image_tag user, :profile_image, :fill, 60, 60, format: 'jpeg', fallback: "no_image.png" %></td>
 			<td><%= user.name %></td>
-			<td>性別</td>
-			<td>年代</td>
+			<td><%= user.sex %></td>
+			<td><%= user.age %></td>
 			<td><%= link_to "show", user_path(user) %></td>
 		</tr>
 	</tbody>

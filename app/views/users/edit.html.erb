@@ -1,2 +1,18 @@
 <h1>Users#edit</h1>
 <p>Find me in app/views/users/edit.html.erb</p>
+
+<%= form_for(@user) do |f| %>
+<%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.png"%>
+<%= f.attachment_field :profile_image %>
+<%= f.radio_button :sex, :male %>
+<%= f.label :sex, "男性", {value: :male, style: "display: inline-block;"} %>
+<%= f.radio_button :sex, :female %>
+<%= f.label :sex, "女性", {value: :female, style: "display: inline-block;"} %>
+<%= f.label :"年代" %>
+<%= f.select :age, [["10代", "10代"], ["20代", "20代"],["30代", "30代"], ["40代", "40代"], ["50代", "50代"], ["60代", "60代"], ["70代", "70代"], ["80代", "80代"]] %>
+<%= f.label :"name" %>
+<%= f.text_field :name, autofocus: true, placeholder:"name"%>
+<%= f.label :"introduction" %>
+<%= f.text_area :introduction, placeholder:"introduction"%>
+<%= f.submit "Update user" %>
+<% end %>

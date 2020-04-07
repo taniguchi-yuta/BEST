@@ -12,7 +12,7 @@
 	</thead>
 	<tbody>
 		<tr>
-			<td><%= attachment_image_tag user, :profile_image, :fill, 60, 60, format: 'jpeg', fallback: "no_image.png" %></td>
+			<td><%= attachment_image_tag user, :profile_image, :fill, 60, 60, format: 'jpeg', fallback: "no_image.png", size:'60x60' %></td>
 			<td><%= user.name %></td>
 			<td><%= user.sex %></td>
 			<td><%= user.age %></td>

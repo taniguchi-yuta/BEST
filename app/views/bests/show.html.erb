@@ -1,0 +1,13 @@
+<h1>Bests#show</h1>
+<p>Find me in app/views/bests/show.html.erb</p>
+
+<%= attachment_image_tag @best, :best_image, :fill, 200, 200, format: 'jpeg', fallback: "no_image.png" %>
+<%= @best.best_name %>
+<%= @best.best_url %>
+<%= @best.recommend %>
+<%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', fallback: "no_image.png" %>
+<%= @user.sex %>
+<%= @user.age %>
+<%= @best.genre %>
+<%= link_to "edit", edit_best_path(@best) %>
+<%= link_to "destroy", best_path(@best), method: :delete, "data-confirm" => "本当に消しますか?" %>

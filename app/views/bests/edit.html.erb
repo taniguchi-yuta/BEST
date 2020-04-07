@@ -1,0 +1,14 @@
+<h1>Bests#edit</h1>
+<p>Find me in app/views/bests/edit.html.erb</p>
+
+<%= form_for(@best) do |f| %>
+<%= attachment_image_tag @best, :best_image, :fill, 200, 200, fallback: "no_image.png"%>
+<%= f.attachment_field :best_image %>
+<%= f.label :"best_name" %>
+<%= f.text_field :best_name, autofocus: true, placeholder:"name"%>
+<%= f.label :"best_url" %>
+<%= f.text_field :best_url, autofocus: true, placeholder:"url"%>
+<%= f.label :"recommend" %>
+<%= f.text_area :recommend, placeholder:"recommend"%>
+<%= f.submit "Update best" %>
+<% end %>

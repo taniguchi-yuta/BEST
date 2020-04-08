@@ -35,9 +35,13 @@ class BestsController < ApplicationController
     redirect_to bests_path
   end
 
+  def genre_search
+    @bests = Best.where(genre: '0')
+  end
+
   private
 
   def best_params
-    params.require(:best).permit(:best_image, :best_name, :best_url, :genre, :recommend)
+    params.require(:best).permit(:best_image, :best_name, :best_url, :recommend, :genre)
   end
 end

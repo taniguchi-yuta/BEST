@@ -1,5 +1,6 @@
 <h1>Bests#index</h1>
 <p>Find me in app/views/bests/index.html.erb</p>
+<p><%= link_to @bests.genres ,bests_genre_search_path %></p>
 
 <% @bests.each do |best| %>
 <%= link_to best_path(best) do %>
@@ -11,3 +12,5 @@
 <%= best.user.age %>
 <%= best.user.sex %>
 <% end %>
+
+

@@ -6,4 +6,7 @@
 <%= @user.sex %>
 <%= @user.age %>
 <%= @user.introduction %>
+
+<% if @user.id == current_user.id %>
 <%= link_to "edit", edit_user_path(@user) %>
+<% end %>

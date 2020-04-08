@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root 'users#index'
+  root 'homes#top'
+  get 'homes/about'
+  get 'bests/genre_search'
   resources :users, only: [:index, :show, :edit, :update]
   resources :bests
 end

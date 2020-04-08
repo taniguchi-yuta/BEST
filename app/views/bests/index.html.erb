@@ -11,6 +11,7 @@
 <%= best.genre %>
 <%= best.user.age %>
 <%= best.user.sex %>
+<%= best.best_comments.count %>
 <% if user_signed_in? %>
     <% if best.favorited_by?(current_user) %> <!-- ログインしているユーザーがファボしたかどうかで分岐 -->
         <p><span>お気に入り解除: </span><%=link_to best.favorites.count, best_favorites_path(best.id), method: :delete %></p>

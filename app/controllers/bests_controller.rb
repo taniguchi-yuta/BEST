@@ -17,6 +17,8 @@ class BestsController < ApplicationController
   def show
     @best = Best.find(params[:id])
     @user = @best.user
+    @best_comment = BestComment.new
+    @best_comments = @best.best_comments
   end
 
   def edit

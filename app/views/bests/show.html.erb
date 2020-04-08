@@ -18,5 +18,29 @@
   <% else %>
     <p><span>お気に入り数: </span><%= @best.favorites.count %></p>
   <% end %>
+
 <%= link_to "edit", edit_best_path(@best) %>
 <%= link_to "destroy", best_path(@best), method: :delete, "data-confirm" => "本当に消しますか?" %>
+
+<%= @best.best_comments.count %>
+<table class="show-tb">
+      <% @best_comments.each do |best_comment| %> <!-- コメント一覧 -->
+        <tr>
+          <td>
+            <%= link_to user_path(best_comment.user), class: "user_#{best_comment.user.id}" do %>
+              <%= attachment_image_tag best_comment.user, :profile_image, :fill, 50, 50, fallback: "no_image.png", size: "50x50" %><br>
+              <%= best_comment.user.name %>
+            <% end %>
+          </td>
+          <td><%= best_comment.comment %></td>
+          <% unless current_user != best_comment.user %>
+            <td><%= link_to 'Destroy', best_best_comments_path(best_comment.id), class: 'btn-sm btn-danger', method: :delete %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </table>
+    <div class="comment-form">
+      <%= form_for [@best, @best_comment] do |f| %>
+        <%= f.text_area :comment, size: "90x5" %>
+        <%= f.submit '送信' %>
+      <% end %>

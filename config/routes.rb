@@ -11,5 +11,6 @@ Rails.application.routes.draw do
   end
   resources :bests do
     resource :favorites, only: [:create, :destroy]
+    resource :best_comments, only: [:create, :destroy]
   end
 end

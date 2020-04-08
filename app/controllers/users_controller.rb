@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :reject_user, only: :edit
+  before_action :reject_user, only: [:edit, :favorites]
   def index
     @users = User.all
   end
@@ -16,6 +16,12 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.update(user_params)
     redirect_to user_path(@user.id)
+  end
+
+  def favorites
+    @user = User.find(params[:id])
+    @bests = @user.bests
+    @favorite_bests = @user.favorite_bests
   end
 
   private

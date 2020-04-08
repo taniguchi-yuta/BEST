@@ -8,6 +8,8 @@
 <%= f.text_field :best_name, autofocus: true, placeholder:"name"%>
 <%= f.label :"best_url" %>
 <%= f.text_field :best_url, autofocus: true, placeholder:"url"%>
+<%= f.label :"genre" %>
+<%= f.select :genre, Best.genres.keys.to_a, {} %>
 <%= f.label :"recommend" %>
 <%= f.text_area :recommend, placeholder:"recommend"%>
 <%= f.submit "Update best" %>

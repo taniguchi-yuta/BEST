@@ -9,4 +9,5 @@
 
 <% if @user.id == current_user.id %>
 <%= link_to "edit", edit_user_path(@user) %>
+<%= link_to "favorites lists", favorites_user_path(@user) %>
 <% end %>

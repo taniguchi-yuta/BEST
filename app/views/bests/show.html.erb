@@ -9,5 +9,14 @@
 <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', fallback: "no_image.png" %>
 <%= @user.sex %>
 <%= @user.age %>
+<% if user_signed_in? %>
+    <% if @best.favorited_by?(current_user) %> <!-- ログインしているユーザーがファボしたかどうかで分岐 -->
+        <p><span>お気に入り解除: </span><%=link_to @best.favorites.count, best_favorites_path(@best.id), method: :delete %></p>
+    <% else %>
+        <p><span>お気に入り登録: </span><%=link_to @best.favorites.count, best_favorites_path(@best.id), method: :post %></p>
+    <% end %>
+  <% else %>
+    <p><span>お気に入り数: </span><%= @best.favorites.count %></p>
+  <% end %>
 <%= link_to "edit", edit_best_path(@best) %>
 <%= link_to "destroy", best_path(@best), method: :delete, "data-confirm" => "本当に消しますか?" %>

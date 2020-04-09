@@ -12,6 +12,7 @@ class BestsController < ApplicationController
 
   def index
     @bests = Best.all
+    @all_ranks = Best.find(Favorite.group(:best_id).order('count(best_id) desc').limit(5).pluck(:best_id))
   end
 
   def show

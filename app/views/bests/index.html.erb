@@ -24,3 +24,12 @@
 <% end %>
 
 
+<h4>お気に入り数ランキング</h4>
+    <% @all_ranks.each.with_index(1) do |best, i| %>
+    <table class="table">
+        <tr>
+          <th class=>第<%= i %>位(<%= best.favorites.count %>)</th>
+          <th><%= link_to best.best_name, best_path(best) %></th>
+        </tr>
+    </table>
+    <% end %>

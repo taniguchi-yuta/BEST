@@ -1,18 +1,36 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
-
-<%= form_for(@user) do |f| %>
-<%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.png"%>
-<%= f.attachment_field :profile_image %>
-<%= f.radio_button :sex, :male %>
-<%= f.label :sex, "男性", {value: :male, style: "display: inline-block;"} %>
-<%= f.radio_button :sex, :female %>
-<%= f.label :sex, "女性", {value: :female, style: "display: inline-block;"} %>
-<%= f.label :"年代" %>
-<%= f.select :age, [["10代", "10代"], ["20代", "20代"],["30代", "30代"], ["40代", "40代"], ["50代", "50代"], ["60代", "60代"], ["70代", "70代"], ["80代", "80代"]] %>
-<%= f.label :"name" %>
-<%= f.text_field :name, autofocus: true, placeholder:"name"%>
-<%= f.label :"introduction" %>
-<%= f.text_area :introduction, placeholder:"introduction"%>
-<%= f.submit "Update user" %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <h2>Edit User</h2>
+      <%= form_for(@user) do |f| %>
+      <div class="form-body">
+      	<div class=" text-center">
+          <div class="field">
+          	<%= attachment_image_tag @user, :profile_image, :fill, 200, 200, class: "img-circle", fallback: "no_image.png", size: '200x200',class: "img-circle"%><br />
+          	<p class="inline"><%= f.attachment_field :profile_image %></p>
+          </div>
+          <div class="form-group">
+		    <%= f.radio_button :sex, :male %>
+			<%= f.label :sex, "男性", {value: :male, style: "display: inline-block;"} %>
+			<%= f.radio_button :sex, :female %>
+			<%= f.label :sex, "女性", {value: :female, style: "display: inline-block;"} %>
+		  </div>
+		  <div class="form-group">
+			<%= f.label :"年代" %>
+			<%= f.select :age, [["10代", "10代"], ["20代", "20代"],["30代", "30代"], ["40代", "40代"], ["50代", "50代"], ["60代", "60代"], ["70代", "70代"], ["80代", "80代"]] %>
+		  </div>
+		</div>
+		<div class="form-group">
+			<%= f.label :"name" %><br />
+			<%= f.text_field :name, autofocus: true, class:"form-control", placeholder:"name"%>
+		</div>
+		<div class="form-group">
+			<%= f.label :"introduction" %><br />
+			<%= f.text_area :introduction, class:"form-control", placeholder:"introduction"%>
+		</div>
+		<%= f.submit "Update user", class: "btn btn-lg btn-block btn-success" %>
+	  </div>
+	  <% end %>
+	</div>
+  </div>
+</div>

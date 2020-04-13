@@ -1,16 +1,34 @@
-<h1>Bests#edit</h1>
-<p>Find me in app/views/bests/edit.html.erb</p>
-
-<%= form_for(@best) do |f| %>
-<%= attachment_image_tag @best, :best_image, :fill, 200, 200, fallback: "no_image.png"%>
-<%= f.attachment_field :best_image %>
-<%= f.label :"best_name" %>
-<%= f.text_field :best_name, autofocus: true, placeholder:"name"%>
-<%= f.label :"best_url" %>
-<%= f.text_field :best_url, autofocus: true, placeholder:"url"%>
-<%= f.label :"genre" %>
-<%= f.select :genre, Best.genres.keys.to_a, {} %>
-<%= f.label :"recommend" %>
-<%= f.text_area :recommend, placeholder:"recommend"%>
-<%= f.submit "Update best" %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <h2>edit best</h2>
+      <%= form_for(@best) do |f| %>
+      <div class="form-body">
+      	<div class=" text-center">
+          <div class="field">
+          	<%= attachment_image_tag @best, :best_image, :fill, 250, 200, fallback: "no_image.png"%><br />
+          	<p class="inline"><%= f.attachment_field :best_image %></p>
+          </div>
+      	</div>
+		<div class="form-group">
+			<%= f.label :"best_name" %><br />
+			<%= f.text_field :best_name, autofocus: true, class:"form-control", placeholder:"name"%>
+		</div>
+		<div class="form-group">
+			<%= f.label :"best_url" %><br />
+			<%= f.text_field :best_url, autofocus: true, class:"form-control", placeholder:"url"%>
+		</div>
+		<div class="form-group">
+  	      <%= f.label :"genre" %><br />
+  	      <%= f.select :genre, Best.genres.keys.to_a, {},class:"form-control" %>
+		</div>
+		<div class="form-group">
+			<%= f.label :"recommend" %><br />
+			<%= f.text_area :recommend, class:"form-control", placeholder:"recommend"%>
+		</div>
+		<%= f.submit "Update best", class: "btn btn-lg btn-block btn-success" %>
+	  </div>
+	  <% end %>
+	</div>
+  </div>
+</div>

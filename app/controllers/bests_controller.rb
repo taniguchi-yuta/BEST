@@ -1,6 +1,7 @@
 class BestsController < ApplicationController
   def new
     @best = Best.new
+    @all_ranks = Best.find(Favorite.group(:best_id).order('count(best_id) desc').limit(5).pluck(:best_id))
   end
 
   def create
@@ -17,9 +18,11 @@ class BestsController < ApplicationController
 
   def show
     @best = Best.find(params[:id])
+    @bests = Best.all
     @user = @best.user
     @best_comment = BestComment.new
     @best_comments = @best.best_comments
+    @all_ranks = Best.find(Favorite.group(:best_id).order('count(best_id) desc').limit(5).pluck(:best_id))
   end
 
   def edit

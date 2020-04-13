@@ -1,16 +1,32 @@
-<h1>Bests#new</h1>
-<p>Find me in app/views/bests/new.html.erb</p>
-
-<%= form_for(@best) do |f| %>
-<%= attachment_image_tag @best, :best_image, :fill, 60, 60, fallback: "no_image.png"%>
-<%= f.attachment_field :best_image %>
-<%= f.label :"best_name" %>
-<%= f.text_field :best_name, autofocus: true, placeholder:"best_name"%>
-<%= f.label :"url" %>
-<%= f.text_field :best_url, autofocus: true, placeholder:"url"%>
-<%= f.label :"genre" %>
-<%= f.select :genre, Best.genres.keys.to_a, {} %>
-<%= f.label :"recommend" %>
-<%= f.text_area :recommend, placeholder:"recommend"%>
-<%= f.submit "post" %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+  	  <h2>New post</h2>
+  	  <%= form_for(@best) do |f| %>
+  	  <div class="form-body">
+  	    <div class="field text-center">
+  	  	  <%= attachment_image_tag @best, :best_image, :fill, 250, 200, fallback: "no_image.png"%><br />
+  	  	  <p class="inline"><%= f.attachment_field :best_image %></p>
+  	    </div>
+  	    <div class="form-group">
+  	  	  <%= f.label :"best_name" %><br />
+  		  <%= f.text_field :best_name, autofocus: true, class:"form-control", placeholder:"best_name"%>
+  		</div>
+  		<div class="form-group">
+    	  <%= f.label :"url" %><br />
+    	  <%= f.text_field :best_url, class:"form-control", placeholder:"url"%>
+  		</div>
+  		<div class="form-group">
+    	  <%= f.label :"genre" %><br />
+    	  <%= f.select :genre, Best.genres.keys.to_a, {},class:"form-control" %>
+  		</div>
+  		<div class="form-group">
+    	  <%= f.label :"recommend" %><br />
+  		  <%= f.text_area :recommend, class:"form-control", placeholder:"recommend"%>
+  		</div>
+  		<%= f.submit "Post", class: "btn btn-lg btn-block btn-success" %>
+  		<% end %>
+ 	   </div>
+	</div>
+  </div>
+</div>

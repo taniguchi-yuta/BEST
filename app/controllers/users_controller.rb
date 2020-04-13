@@ -2,10 +2,15 @@ class UsersController < ApplicationController
   before_action :reject_user, only: [:edit, :favorites]
   def index
     @users = User.all
+    @bests = Best.all
+    @all_ranks = Best.find(Favorite.group(:best_id).order('count(best_id) desc').limit(5).pluck(:best_id))
   end
 
   def show
     @user = User.find(params[:id])
+    @bests = Best.all
+    @bests_user = @user.bests
+    @all_ranks = Best.find(Favorite.group(:best_id).order('count(best_id) desc').limit(5).pluck(:best_id))
   end
 
   def edit

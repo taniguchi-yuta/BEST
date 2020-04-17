@@ -11,20 +11,29 @@
           </div>
       	</div>
 		<div class="form-group">
-			<%= f.label :"best_name" %><br />
-			<%= f.text_field :best_name, autofocus: true, class:"form-control", placeholder:"name"%>
+		  <%= f.label :"best_name" %><br />
+		  <% if @best.errors.any? %>
+		  <div class="alert alert-danger">
+		  	<ul>
+		  	  <% @best.errors.full_messages.each do |message| %>
+		  	  <li><%= message %></li>
+		  	  <% end %>
+		  	</ul>
+		  </div>
+		  <% end %>
+		  <%= f.text_field :best_name, autofocus: true, class:"form-control", placeholder:"name"%>
 		</div>
 		<div class="form-group">
-			<%= f.label :"best_url" %><br />
-			<%= f.text_field :best_url, autofocus: true, class:"form-control", placeholder:"url"%>
+		  <%= f.label :"best_url" %><br />
+		  <%= f.text_field :best_url, autofocus: true, class:"form-control", placeholder:"url"%>
 		</div>
 		<div class="form-group">
   	      <%= f.label :"genre" %><br />
   	      <%= f.select :genre, Best.genres.keys.to_a, {},class:"form-control" %>
 		</div>
 		<div class="form-group">
-			<%= f.label :"recommend" %><br />
-			<%= f.text_area :recommend, class:"form-control", placeholder:"recommend"%>
+	      <%= f.label :"recommend" %><br />
+		  <%= f.text_area :recommend, class:"form-control", placeholder:"recommend"%>
 		</div>
 		<%= f.submit "Update best", class: "btn btn-lg btn-block btn-success" %>
 	  </div>

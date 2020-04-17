@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :reject_user, only: [:edit, :favorites]
+  before_action :authenticate_user!
+  before_action :reject_user, only: :edit
   def index
     @users = User.all
     @bests = Best.all
@@ -19,14 +20,18 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    redirect_to user_path(@user.id)
+    if @user.update(user_params)
+      redirect_to user_path(@user.id)
+    else
+      render :edit
+    end
   end
 
   def favorites
     @user = User.find(params[:id])
     @bests = @user.bests
     @favorite_bests = @user.favorite_bests
+    @all_ranks = Best.find(Favorite.group(:best_id).order('count(best_id) desc').limit(5).pluck(:best_id))
   end
 
   private

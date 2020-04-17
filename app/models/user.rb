@@ -7,4 +7,5 @@ class User < ApplicationRecord
   has_many :bests, dependent: :destroy
   has_many :favorites
   has_many :favorite_bests, through: :favorites, source: :best
+  validates :name, presence: true
 end

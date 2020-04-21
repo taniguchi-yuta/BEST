@@ -1,0 +1,2 @@
+$(".comment_<%= @best.id %>").html("<%= j(render 'bests/comment',  best_comments: @best.best_comments ) %>")
+$("textarea").val('')

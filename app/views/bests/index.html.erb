@@ -17,29 +17,18 @@
                 <%= best.best_name %>
                 <div>
                   <% if best.user.sex.blank? %>
-                  <%= "性別未設定" %>
+                    <%= "性別未設定" %>
                   <% else %>
-                  <%= best.user.sex %>
+                    <%= best.user.sex %>
                   <% end %>
                   <% if best.user.age.blank? %>
-                  <%= "年齢未設定" %>
+                    <%= "年齢未設定" %>
                   <% else %>
-                  <%= best.user.age %>
+                    <%= best.user.age %>
                   <% end %>
-
-                  <% if user_signed_in? %>
-                  <% if best.favorited_by?(current_user) %>
-                  <%=link_to best_favorites_path(best.id), method: :delete do%>
-                  <p>お気に入り<span class="glyphicon glyphicon-heart"><%= best.favorites.count %></span></p>
-                  <% end %>
-                  <% else %>
-                  <%=link_to best_favorites_path(best.id), method: :post do%>
-                  <p>お気に入り<span class="glyphicon glyphicon-heart"><%= best.favorites.count %></span></p>
-                  <% end %>
-                  <% end %>
-                  <% else %>
-                  <p>お気に入り<span><%= best.favorites.count %></span></p>
-                  <% end %>
+                  <div class="favorite_<%= best.id %>">
+                    <%= render 'favorites/favorite', best: best %>
+                  </div>
                 </div>
               </div>
             </div>

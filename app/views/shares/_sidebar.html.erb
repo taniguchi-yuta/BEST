@@ -2,7 +2,7 @@
 <% all_ranks.each.with_index(1) do |best, i| %>
 <table class="table">
   <tr>
-  	<th>第<%= i %>位（<span class="glyphicon glyphicon-heart"><%= best.favorites.count %></span>）</th>
+  	<th>第<%= i %>位（<span class="glyphicon glyphicon-heart" style="color: red;"></span><%= best.favorites.count %>）</th>
   	<th><%= link_to best.best_name, best_path(best) %></th>
   </tr>
 </table>

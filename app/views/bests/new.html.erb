@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
-  	  <h2>New post</h2>
+  	  <h2>新規投稿</h2>
   	  <%= form_for(@best) do |f| %>
   	  <div class="form-body">
   	    <div class="field text-center">
@@ -13,33 +13,23 @@
           <p class="inline"><%= f.attachment_field :best_image,id: "user_img" %></p>
   	    </div>
   	    <div class="form-group">
-  	  	  <%= f.label :"best_name" %><br />
-
-          <% if @best.errors.any? %>
-          <div class="alert alert-danger">
-            <ul>
-              <% @best.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-              <% end %>
-            </ul>
-          </div>
-          <% end %>
-
-  		  <%= f.text_field :best_name, autofocus: true, class:"form-control", placeholder:"best_name"%>
+  	  	  <%= f.label :"BEST名称" %><br />
+          <%= render 'shares/error', model: @best %>
+          <%= f.text_field :best_name, autofocus: true, class:"form-control", placeholder:"BEST名称"%>
         </div>
     		<div class="form-group">
-      	  <%= f.label :"url" %><br />
-      	  <%= f.text_field :best_url, class:"form-control", placeholder:"url"%>
+      	  <%= f.label :"URL" %><br />
+      	  <%= f.text_field :best_url, class:"form-control", placeholder:"URL"%>
     		</div>
     		<div class="form-group">
-      	  <%= f.label :"genre" %><br />
+      	  <%= f.label :"ジャンル" %><br />
       	  <%= f.select :genre, Best.genres.keys.to_a, {},class:"form-control" %>
     		</div>
     		<div class="form-group">
-      	  <%= f.label :"recommend" %><br />
-    		  <%= f.text_area :recommend, class:"form-control", placeholder:"recommend"%>
+      	  <%= f.label :"紹介文" %><br />
+    		  <%= f.text_area :recommend, class:"form-control", placeholder:"紹介文"%>
     		</div>
-    		<%= f.submit "Post", class: "btn btn-lg btn-block btn-success" %>
+    		<%= f.submit "投稿する", class: "btn btn-lg btn-block btn-success" %>
       </div>
       <% end %>
     </div>

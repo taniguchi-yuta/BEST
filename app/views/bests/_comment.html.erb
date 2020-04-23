@@ -8,7 +8,7 @@
   </td>
   <td><%= best_comment.comment %></td>
   <% unless current_user != best_comment.user %>
-  <td><%= link_to 'Destroy', best_best_comments_path(best_comment.id), class: 'btn-sm btn-danger', method: :delete, remote: true %></td>
+  <td><%= link_to '削除', best_best_comments_path(best_comment.id), class: 'btn-sm btn-danger', method: :delete, remote: true %></td>
   <% end %>
 </tr>
 <% end %>

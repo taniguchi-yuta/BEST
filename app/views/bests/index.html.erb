@@ -1,40 +1,44 @@
-<p class="text-center"><%= link_to @bests.genres ,bests_genre_search_path %></p>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-3">
-        <%= render 'shares/sidebar', all_ranks: @all_ranks, best: @best %>
-      </div>
-      <div class="col-lg-9">
-        <h2>BESTs list</h2>
-        <div class="text-center">
-          <% @bests.each do |best| %>
-          <div class="pull-left">
-            <div class="mr-15"><%= link_to best_path(best) do %>
-              <%= attachment_image_tag best, :best_image, :fill, 250, 200, format: 'jpeg', fallback: "no_image.png", size:'250x200' %>
-              <% end %>
-              <p class="well well-sm text-center lead"><%= best.genre %></p>
-              <div class="panel panel-default">
-                <%= best.best_name %>
-                <div>
-                  <% if best.user.sex.blank? %>
-                    <%= "性別未設定" %>
-                  <% else %>
-                    <%= best.user.sex %>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3 sticky">
+      <%= render 'shares/sidebar', all_ranks: @all_ranks, best: @best, q: @q %>
+    </div>
+    <div class="col-lg-9">
+      <h2>BEST一覧</h2>
+      <div class="text-center">
+        <% @bests.each do |best| %>
+        <div class="pull-left">
+          <div class="mr-15"><%= link_to best_path(best) do %>
+            <%= attachment_image_tag best, :best_image, :fill, 250, 200, format: 'jpeg', fallback: "no_image.png", size:'250x200' %>
+            <% end %>
+            <p class="well well-sm text-center lead"><%= best.genre %></p>
+            <div class="panel panel-default">
+              <%= best.best_name %>
+              <div>
+                <% if best.user.sex.blank? %>
+                  <%= "性別未設定" %>
+                <% else %>
+                  <% case best.user.sex %>
+                  <% when 'male' %>
+                  <%= "男性" %>
+                  <% when 'female' %>
+                  <%= "女性" %>
                   <% end %>
-                  <% if best.user.age.blank? %>
-                    <%= "年齢未設定" %>
-                  <% else %>
-                    <%= best.user.age %>
-                  <% end %>
-                  <div class="favorite_<%= best.id %>">
-                    <%= render 'favorites/favorite', best: best %>
-                  </div>
+                <% end %>
+                <% if best.user.age.blank? %>
+                  <%= "年齢未設定" %>
+                <% else %>
+                  <%= best.user.age %>
+                <% end %>
+                <div class="favorite_<%= best.id %>">
+                  <%= render 'favorites/favorite', best: best %>
                 </div>
               </div>
             </div>
           </div>
-          <% end %>
         </div>
+        <% end %>
       </div>
     </div>
   </div>
+</div>

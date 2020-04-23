@@ -1,8 +1,7 @@
-<p class="text-center"><%= link_to @bests.genres ,bests_genre_search_path %></p>
 <div class="container">
   <div class="row">
-    <div class="col-lg-3">
-      <%= render 'shares/sidebar', all_ranks: @all_ranks, best: @best %>
+    <div class="col-lg-3 sticky">
+      <%= render 'shares/sidebar', all_ranks: @all_ranks, best: @best, q: @q %>
   	</div>
 	<div class="col-lg-9">
 	  <div class="row">
@@ -14,7 +13,12 @@
 			  <% if @user.sex.blank? %>
 			    <%= "性別未設定" %>
 			  <% else %>
-			    <%= @user.sex %>
+		        <% case @user.sex %>
+		  	    <% when 'male' %>
+		        <td>男性</td>
+		        <% when 'female' %>
+		        <td>女性</td>
+			    <% end %>
 			  <% end %>
 			  <% if @user.age.blank? %>
 			    <%= "年齢未設定" %>
@@ -22,12 +26,12 @@
 			    <%= @user.age %>
 			  <% end %>
 			</div>
+			<p><%= @user.introduction %></p>
 			<% if @user.id == current_user.id %>
-			  <%= link_to "edit", edit_user_path(@user), class: "btn btn-warning" %>
-			  <%= link_to "favorites lists", favorites_user_path(@user), class: "btn btn-info" %>
+			  <%= link_to "編集", edit_user_path(@user), class: "btn btn-warning" %>
+			  <%= link_to "お気に入り一覧", favorites_user_path(@user), class: "btn btn-info" %>
 			<% end %>
 		  </div>
-		  <p>introduction:<%= @user.introduction %></p>
 		</div>
 	  </div>
 	  <h3>投稿一覧</h3>

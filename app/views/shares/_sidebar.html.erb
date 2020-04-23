@@ -1,9 +1,25 @@
+<div class="form-body mb-10">
+  <h4><span class="glyphicon glyphicon-search" aria-hidden="true"></span>検索</h4>
+  <%= search_form_for q do |f| %>
+  <div class="form-group">
+  	<%= f.label :"BEST名称" %><br />
+    <%= f.search_field :best_name_cont, class:"form-control", placeholder:"BEST名称" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :"ジャンル" %><br />
+    <%= f.select :genre_cont, Best.genres.to_a, {:prompt => "選択してください"},class:"form-control" %>
+  </div>
+  <%= f.submit "検索", class: "btn btn-block btn-default"%>
+  <% end %>
+</div>
+
 <h4>お気に入りランキング</h4>
 <% all_ranks.each.with_index(1) do |best, i| %>
-<table class="table">
+<table class="table table-condensed">
   <tr>
-  	<th>第<%= i %>位（<span class="glyphicon glyphicon-heart" style="color: red;"></span><%= best.favorites.count %>）</th>
-  	<th><%= link_to best.best_name, best_path(best) %></th>
+    <th>第<%= i %>位(<span class="glyphicon glyphicon-heart" style="color: red;"></span><%= best.favorites.count %>)<br />
+    <%= link_to best.best_name, best_path(best) %>
+    </th>
   </tr>
 </table>
 <% end %>

@@ -1,59 +1,63 @@
-<p class="text-center"><%= link_to @bests.genres ,bests_genre_search_path %></p>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-3">
-        <%= render 'shares/sidebar', all_ranks: @all_ranks, best: @best %>
-      </div>
-      <div class="col-lg-9">
-        <h2>BEST詳細</h2>
-        <div class="row">
-          <div class="col-md-9 col-md-offset-2">
-            <%= attachment_image_tag @best, :best_image, :fill, 250, 200, format: 'jpeg', fallback: "no_image.png", size:'250x200' %>
-            <div class="pull-right">
-              <div class="text-center">
-                <p><%= attachment_image_tag @user, :profile_image, :fill, 80, 80,class: "img-circle", format: 'jpeg', fallback: "no_image.png", size: '80x80',class: "img-circle" %></p>
-                <%= @user.name %>
-                <div>
-                  <% if @user.sex.blank? %>
-                    <%= "性別未設定" %>
-                  <% else %>
-                    <%= @user.sex %>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3 sticky">
+      <%= render 'shares/sidebar', all_ranks: @all_ranks, best: @best, q: @q %>
+    </div>
+    <div class="col-lg-9">
+      <h2>BEST詳細</h2>
+      <div class="row">
+        <div class="col-md-9 col-md-offset-2">
+          <%= attachment_image_tag @best, :best_image, :fill, 250, 200, format: 'jpeg', fallback: "no_image.png", size:'250x200' %>
+          <div class="pull-right">
+            <div class="text-center">
+              <p><%= attachment_image_tag @user, :profile_image, :fill, 80, 80,class: "img-circle", format: 'jpeg', fallback: "no_image.png", size: '80x80',class: "img-circle" %></p>
+              <%= @user.name %>
+              <div>
+                <% if @user.sex.blank? %>
+                  <%= "性別未設定" %>
+                <% else %>
+                  <% case @user.sex %>
+                  <% when 'male' %>
+                  <td>男性</td>
+                  <% when 'female' %>
+                  <td>女性</td>
                   <% end %>
-                  <% if @user.age.blank? %>
-                    <%= "年齢未設定" %>
-                  <% else %>
-                    <%= @user.age %>
-                  <% end %>
-                </div>
-                <div class="favorite_<%= @best.id %>">
-                  <%= render 'favorites/favorite', best: @best %>
-                </div>
+                <% end %>
+                <% if @user.age.blank? %>
+                  <%= "年齢未設定" %>
+                <% else %>
+                  <%= @user.age %>
+                <% end %>
+              </div>
+              <div class="favorite_<%= @best.id %>">
+                <%= render 'favorites/favorite', best: @best %>
               </div>
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-9 col-md-offset-2">
-            <p class="well well-sm text-center lead"><span><%= @best.genre %></span></p>
-            <p><span>BEST_name: </span><%= @best.best_name %></p>
-            <p><span>BEST_url: </span><%= raw Rinku.auto_link(@best.best_url, :all,'target="_blank"') %></p>
-            <p><span>recommend: </span><%= @best.recommend %></p>
-            <% if @user.id == current_user.id %>
-              <%= link_to "edit", edit_best_path(@best), class: "btn btn-warning" %>
-              <%= link_to "destroy", best_path(@best),class: "btn btn-danger", method: :delete, "data-confirm" => "本当に消しますか?" %>
-            <% end %>
-          </div>
-        </div>
-        <p><コメント一覧></p>
-        <table class="show-tb comment_<%= @best.id %>">
-          <%= render 'comment', best_comments: @best.best_comments %>
-        </table>
-        <div class="comment-form">
-          <%= form_for [@best, @best_comment], data: {remote: true} do |f| %>
-          <%= f.text_area :comment, class:"form-control", placeholder:"comment" %>
-          <%= f.submit 'comment', class: "btn btn-lg btn-block btn-success" %>
-        </div>
-        <% end %>
       </div>
+      <div class="row">
+        <div class="col-md-9 col-md-offset-2">
+          <p class="well well-sm text-center lead"><span><%= @best.genre %></span></p>
+          <p><span>BEST名称: </span><%= @best.best_name %></p>
+          <p><span>URL: </span><%= raw Rinku.auto_link(@best.best_url, :all,'target="_blank"') %></p>
+          <p><span>紹介文: </span><%= @best.recommend %></p>
+          <% if @user.id == current_user.id %>
+            <%= link_to "編集", edit_best_path(@best), class: "btn btn-warning" %>
+            <%= link_to "削除", best_path(@best),class: "btn btn-danger", method: :delete, "data-confirm" => "本当に消しますか?" %>
+          <% end %>
+        </div>
+      </div>
+      <p><コメント一覧></p>
+      <table class="show-tb comment_<%= @best.id %>">
+        <%= render 'comment', best_comments: @best.best_comments %>
+      </table>
+      <div class="comment-form">
+        <%= form_for [@best, @best_comment], data: {remote: true} do |f| %>
+        <%= f.text_area :comment, class:"form-control", placeholder:"コメント" %>
+        <%= f.submit 'コメントする', class: "btn btn-lg btn-block btn-success" %>
+      </div>
+      <% end %>
     </div>
   </div>
+</div>

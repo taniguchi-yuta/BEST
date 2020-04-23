@@ -1,0 +1,10 @@
+ja:
+  activerecord:
+    models:
+      user: User
+      best: BEST
+    attributes:
+      user:
+        name: 名前
+      best:
+        best_name: BEST名称

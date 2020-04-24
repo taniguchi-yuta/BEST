@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :reject_user, only: :edit
   def index
-    @users = User.all
+    @users = User.page(params[:page]).per(7)
     @q = Best.ransack(params[:q])
     @bests = @q.result
     @all_ranks = Best.find(Favorite.group(:best_id).order('count(best_id) desc').limit(5).pluck(:best_id))
@@ -11,8 +11,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @q = Best.ransack(params[:q])
-    @bests = @q.result
-    @bests_user = @user.bests
+    @bests = @q.result.order(updated_at: :desc)
+    @bests_user = @user.bests.order(updated_at: :desc)
     @all_ranks = Best.find(Favorite.group(:best_id).order('count(best_id) desc').limit(5).pluck(:best_id))
   end
 
@@ -32,8 +32,8 @@ class UsersController < ApplicationController
   def favorites
     @user = User.find(params[:id])
     @q = Best.ransack(params[:q])
-    @bests = @q.result
-    @bests = @user.favorite_bests
+    @bests = @q.result.order(updated_at: :desc)
+    @bests_favorite = @user.favorite_bests
     @all_ranks = Best.find(Favorite.group(:best_id).order('count(best_id) desc').limit(5).pluck(:best_id))
   end
 

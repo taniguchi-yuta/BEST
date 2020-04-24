@@ -3,7 +3,6 @@ class BestsController < ApplicationController
   before_action :reject_user, only: :edit
   def new
     @best = Best.new
-    @all_ranks = Best.find(Favorite.group(:best_id).order('count(best_id) desc').limit(5).pluck(:best_id))
   end
 
   def create
@@ -18,7 +17,7 @@ class BestsController < ApplicationController
 
   def index
     @q = Best.ransack(params[:q])
-    @bests = @q.result
+    @bests = @q.result.order(updated_at: :desc)
     @all_ranks = Best.find(Favorite.group(:best_id).order('count(best_id) desc').limit(5).pluck(:best_id))
   end
 

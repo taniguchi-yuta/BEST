@@ -14,7 +14,7 @@
               <%= @user.name %>
               <div>
                 <% if @user.sex.blank? %>
-                  <%= "性別未設定" %>
+                  <span class="label label-default">性別未設定</span>
                 <% else %>
                   <% case @user.sex %>
                   <% when 'male' %>
@@ -24,13 +24,10 @@
                   <% end %>
                 <% end %>
                 <% if @user.age.blank? %>
-                  <%= "年齢未設定" %>
+                  <span class="label label-default">年齢未設定</span>
                 <% else %>
                   <%= @user.age %>
                 <% end %>
-              </div>
-              <div class="favorite_<%= @best.id %>">
-                <%= render 'favorites/favorite', best: @best %>
               </div>
             </div>
           </div>
@@ -42,9 +39,13 @@
           <p><span>BEST名称: </span><%= @best.best_name %></p>
           <p><span>URL: </span><%= raw Rinku.auto_link(@best.best_url, :all,'target="_blank"') %></p>
           <p><span>紹介文: </span><%= @best.recommend %></p>
+          <p><span>更新日: </span><%= @best.updated_at.strftime("%Y年%-m月%-d日") %></p>
+          <div class="favorite_<%= @best.id %> size-big">
+             <%= render 'favorites/favorite', best: @best %>
+          </div>
           <% if @user.id == current_user.id %>
-            <%= link_to "編集", edit_best_path(@best), class: "btn btn-warning" %>
-            <%= link_to "削除", best_path(@best),class: "btn btn-danger", method: :delete, "data-confirm" => "本当に消しますか?" %>
+            <%= link_to "編集する", edit_best_path(@best), class: "btn btn-warning" %>
+            <%= link_to "削除する", best_path(@best),class: "btn btn-danger", method: :delete, "data-confirm" => "本当に消しますか?" %>
           <% end %>
         </div>
       </div>

@@ -40,8 +40,41 @@
 .mb-10{
 	margin-bottom: 50px;
 }
-.sticky {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 70px;
+.title{
+  font-size: 80px;
+}
+.arrow_box {
+  margin-top: 20px;
+  position: relative;
+  background: #ffffff;
+  border: 1px solid #808080;
+}
+.arrow_box:after, .arrow_box:before {
+  bottom: 100%;
+  left: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.arrow_box:after {
+  border-color: rgba(255, 255, 255, 0);
+  border-bottom-color: #ffffff;
+  border-width: 20px;
+  margin-left: -20px;
+}
+.arrow_box:before {
+  border-color: rgba(128, 128, 128, 0);
+  border-bottom-color: #808080;
+  border-width: 21px;
+  margin-left: -21px;
+}
+.f-size{
+  font-size: 20px;
+}
+.block{
+  display: inline-block;
 }

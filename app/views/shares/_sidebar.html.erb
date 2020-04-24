@@ -1,4 +1,17 @@
-<div class="form-body mb-10">
+<div class="mb-10">
+  <h4>お気に入りランキング</h4>
+  <% all_ranks.each.with_index(1) do |best, i| %>
+  <table class="table table-condensed">
+    <tr>
+      <th>第<%= i %>位(<span class="glyphicon glyphicon-heart" style="color: red;"></span><%= best.favorites.count %>)<br />
+      <%= link_to best.best_name, best_path(best) %>
+      </th>
+    </tr>
+  </table>
+  <% end %>
+</div>
+
+<div class="form-body">
   <h4><span class="glyphicon glyphicon-search" aria-hidden="true"></span>検索</h4>
   <%= search_form_for q do |f| %>
   <div class="form-group">
@@ -13,13 +26,3 @@
   <% end %>
 </div>
 
-<h4>お気に入りランキング</h4>
-<% all_ranks.each.with_index(1) do |best, i| %>
-<table class="table table-condensed">
-  <tr>
-    <th>第<%= i %>位(<span class="glyphicon glyphicon-heart" style="color: red;"></span><%= best.favorites.count %>)<br />
-    <%= link_to best.best_name, best_path(best) %>
-    </th>
-  </tr>
-</table>
-<% end %>

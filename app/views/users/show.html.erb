@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-lg-3 sticky">
+    <div class="col-lg-3">
       <%= render 'shares/sidebar', all_ranks: @all_ranks, best: @best, q: @q %>
   	</div>
 	<div class="col-lg-9">
@@ -35,9 +35,9 @@
 		</div>
 	  </div>
 	  <h3>投稿一覧</h3>
-	  <% @bests_user.each do |best| %>
-	  <div class="pull-left text-center">
-		<div class="mr-15"><%= link_to best_path(best) do %>
+	  <div class="text-center">
+	  	<% @bests_user.each do |best| %>
+		<div class="mr-15 block"><%= link_to best_path(best) do %>
 		  <%= attachment_image_tag best, :best_image, :fill, 250, 200, format: 'jpeg', fallback: "no_image.png", size:'250x200' %>
 		  <% end %>
 		  <p class="well well-sm lead"><%= best.genre %></p>
@@ -48,8 +48,8 @@
             </div>
 		  </div>
 		</div>
+	    <% end %>
 	  </div>
-	  <% end %>
 	</div>
   </div>
 </div>

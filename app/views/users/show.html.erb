@@ -11,7 +11,7 @@
 		    <p><%= @user.name %></p>
 			<div>
 			  <% if @user.sex.blank? %>
-			    <%= "性別未設定" %>
+			    <span class="label label-default">性別未設定</span>
 			  <% else %>
 		        <% case @user.sex %>
 		  	    <% when 'male' %>
@@ -21,14 +21,14 @@
 			    <% end %>
 			  <% end %>
 			  <% if @user.age.blank? %>
-			    <%= "年齢未設定" %>
+			    <span class="label label-default">年齢未設定</span>
 			  <% else %>
 			    <%= @user.age %>
 			  <% end %>
 			</div>
 			<p><%= @user.introduction %></p>
 			<% if @user.id == current_user.id %>
-			  <%= link_to "編集", edit_user_path(@user), class: "btn btn-warning" %>
+			  <%= link_to "編集する", edit_user_path(@user), class: "btn btn-warning" %>
 			  <%= link_to "お気に入り一覧", favorites_user_path(@user), class: "btn btn-info" %>
 			<% end %>
 		  </div>
@@ -36,19 +36,22 @@
 	  </div>
 	  <h3>投稿一覧</h3>
 	  <div class="text-center">
-	  	<% @bests_user.each do |best| %>
-		<div class="mr-15 block"><%= link_to best_path(best) do %>
-		  <%= attachment_image_tag best, :best_image, :fill, 250, 200, format: 'jpeg', fallback: "no_image.png", size:'250x200' %>
-		  <% end %>
-		  <p class="well well-sm lead"><%= best.genre %></p>
-		  <div class="panel panel-default">
-		  	<%= best.best_name %>
-		  	<div class="favorite_<%= best.id %>">
-              <%= render 'favorites/favorite', best: best %>
-            </div>
+	  	<if @bests_user.present?>
+	      <% @bests_user.each do |best| %>
+		  <div class="mr-15 block"><%= link_to best_path(best) do %>
+		    <%= attachment_image_tag best, :best_image, :fill, 250, 200, format: 'jpeg', fallback: "no_image.png", size:'250x200' %>
+		    <% end %>
+		    <p class="well well-sm lead"><%= best.genre %></p>
+		    <div class="panel panel-default">
+		  	  <%= best.best_name %>
+		  	  <div class="favorite_<%= best.id %>">
+                <%= render 'favorites/favorite', best: best %>
+              </div>
+		    </div>
 		  </div>
-		</div>
-	    <% end %>
+	      <% end %>
+	    <% else %>
+	    <h1 class="text-muted top-padding">投稿はありません</h1>
 	  </div>
 	</div>
   </div>

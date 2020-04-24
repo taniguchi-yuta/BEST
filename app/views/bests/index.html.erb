@@ -15,7 +15,7 @@
               <%= best.best_name %>
               <div>
                 <% if best.user.sex.blank? %>
-                  <%= "性別未設定" %>
+                  <span class="label label-default">性別未設定</span>
                 <% else %>
                   <% case best.user.sex %>
                   <% when 'male' %>
@@ -25,7 +25,7 @@
                   <% end %>
                 <% end %>
                 <% if best.user.age.blank? %>
-                  <%= "年齢未設定" %>
+                  <span class="label label-default">年齢未設定</span>
                 <% else %>
                   <%= best.user.age %>
                 <% end %>

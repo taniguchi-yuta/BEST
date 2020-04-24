@@ -6,7 +6,8 @@
       <div class="col-lg-9">
         <h2>お気に入り一覧</h2>
         <div class="text-center">
-          <% @bests.each do |best| %>
+          <if @bests_favorite.present?>
+          <% @bests_favorite.each do |best| %>
             <div class="mr-15 block"><%= link_to best_path(best) do %>
               <%= attachment_image_tag best, :best_image, :fill, 250, 200, format: 'jpeg', fallback: "no_image.png", size:'250x200' %>
               <% end %>
@@ -15,13 +16,18 @@
               <div class="panel panel-default">
               <%= best.best_name %>
                 <div>
-                  <% if best.user.sex.nil? %>
-                    <%= "性別未設定" %>
+                  <% if best.user.sex.blank? %>
+                    <span class="label label-default">性別未設定</span>
                   <% else %>
-                    <%= best.user.sex %>
+                    <% case @user.sex %>
+                    <% when 'male' %>
+                    <td>男性</td>
+                    <% when 'female' %>
+                    <td>女性</td>
+                    <% end %>
                   <% end %>
-                  <% if best.user.age.nil? %>
-                    <%= "年齢未設定" %>
+                  <% if best.user.age.blank? %>
+                    <span class="label label-default">年齢未設定</span>
                   <% else %>
                     <%= best.user.age %>
                   <% end %>
@@ -32,6 +38,8 @@
               </div>
             </div>
           <% end %>
+          <% else %>
+          <h1 class="text-muted top-padding">お気に入りはありません。</h1>
         </div>
       </div>
     </div>

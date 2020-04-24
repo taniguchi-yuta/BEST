@@ -20,10 +20,10 @@
 			<tr>
 			  <td><%= link_to user_path(user) do %>
 				<%= attachment_image_tag user, :profile_image, :fill, 60, 60, class: "img-circle", format: 'jpeg', fallback: "no_image.png", size:'60x60' %>
-			  <% end %></td>
+			  	<% end %></td>
 			  <td><%= user.name %></td>
 			  	<% if user.sex.blank? %>
-			      <%= "未設定" %>
+			      <td><span class="label label-default">未設定</span></td>
 			  	<% else %>
 			  	  <% case user.sex %>
 			  	  <% when 'male' %>
@@ -32,18 +32,19 @@
 			      <td>女性</td>
 			      <% end %>
 			    <% end %>
-			  <td>
 			  	<% if user.age.blank? %>
-			      <%= "未設定" %>
+			      <td><span class="label label-default">未設定</span></td>
 			  	<% else %>
-			      <%= user.age %>
+			      <td><%= user.age %></td>
 			  	<% end %>
-			  </td>
 			  <td><%= link_to "詳細", user_path(user) %></td>
 			</tr>
 			<% end %>
 		  </tbody>
 		</table>
+	  <div class="text-center">
+	    <%= paginate @users %>
+	  </div>
 	</div>
   </div>
 </div>

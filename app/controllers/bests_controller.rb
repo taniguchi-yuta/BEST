@@ -1,5 +1,5 @@
 class BestsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :show, :edit, :update, :destory]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destory]
   before_action :reject_user, only: :edit
   def new
     @best = Best.new

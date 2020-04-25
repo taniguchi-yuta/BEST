@@ -39,11 +39,11 @@
           <p><span>BEST名称: </span><%= @best.best_name %></p>
           <p><span>URL: </span><%= raw Rinku.auto_link(@best.best_url, :all,'target="_blank"') %></p>
           <p><span>紹介文: </span><%= @best.recommend %></p>
-          <p><span>更新日: </span><%= @best.updated_at.strftime("%Y年%-m月%-d日") %></p>
+          <p><span>更新日: </span><%= @best.updated_at.try(:strftime,"%Y年%-m月%-d日") %></p>
           <div class="favorite_<%= @best.id %> size-big">
              <%= render 'favorites/favorite', best: @best %>
           </div>
-          <% if @user.id == current_user.id %>
+          <% if @best.user == current_user %>
             <%= link_to "編集する", edit_best_path(@best), class: "btn btn-warning" %>
             <%= link_to "削除する", best_path(@best),class: "btn btn-danger", method: :delete, "data-confirm" => "本当に消しますか?" %>
           <% end %>
@@ -54,9 +54,11 @@
         <%= render 'comment', best_comments: @best.best_comments %>
       </table>
       <div class="comment-form">
+        <% if user_signed_in? %>
         <%= form_for [@best, @best_comment], data: {remote: true} do |f| %>
         <%= f.text_area :comment, class:"form-control", placeholder:"コメント" %>
         <%= f.submit 'コメントする', class: "btn btn-lg btn-block btn-success" %>
+        <% end %>
       </div>
       <% end %>
     </div>

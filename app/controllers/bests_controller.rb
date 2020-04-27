@@ -18,7 +18,7 @@ class BestsController < ApplicationController
   def index
     @q = Best.ransack(params[:q])
     @bests = @q.result.order(updated_at: :desc)
-    @all_ranks = Best.find(Favorite.group(:best_id).order('count(best_id) desc').limit(5).pluck(:best_id))
+    @all_ranks = Best.find(Favorite.group(:best_id).order(Arel.sql('count(best_id) desc')).limit(5).pluck(:best_id))
   end
 
   def show
@@ -28,7 +28,7 @@ class BestsController < ApplicationController
     @user = @best.user
     @best_comment = BestComment.new
     @best_comments = @best.best_comments
-    @all_ranks = Best.find(Favorite.group(:best_id).order('count(best_id) desc').limit(5).pluck(:best_id))
+    @all_ranks = Best.find(Favorite.group(:best_id).order(Arel.sql('count(best_id) desc')).limit(5).pluck(:best_id))
   end
 
   def edit

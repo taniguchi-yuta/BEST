@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     @users = User.page(params[:page]).per(7)
     @q = Best.ransack(params[:q])
     @bests = @q.result
-    @all_ranks = Best.find(Favorite.group(:best_id).order('count(best_id) desc').limit(5).pluck(:best_id))
+    @all_ranks = Best.find(Favorite.group(:best_id).order(Arel.sql('count(best_id) desc')).limit(5).pluck(:best_id))
   end
 
   def show
@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     @q = Best.ransack(params[:q])
     @bests = @q.result.order(updated_at: :desc)
     @bests_user = @user.bests.order(updated_at: :desc)
-    @all_ranks = Best.find(Favorite.group(:best_id).order('count(best_id) desc').limit(5).pluck(:best_id))
+    @all_ranks = Best.find(Favorite.group(:best_id).order(Arel.sql('count(best_id) desc')).limit(5).pluck(:best_id))
   end
 
   def edit

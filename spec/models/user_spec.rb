@@ -17,7 +17,7 @@ RSpec.describe 'Userモデルのテスト', type: :model do
   end
 
   describe 'アソシエーションのテスト' do
-    context 'Bookモデルとの関係' do
+    context 'Bestモデルとの関係' do
       it '1:Nとなっている' do
         expect(User.reflect_on_association(:bests).macro).to eq :has_many
       end

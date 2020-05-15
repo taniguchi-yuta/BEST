@@ -1,4 +1,4 @@
-server 'best-portfolio.work', user: 'ec2-user', roles: %w{app web db}
+server '18.180.25.33', user: 'ec2-user', roles: %w{app web db}
 
 # server-based syntax
 # ======================

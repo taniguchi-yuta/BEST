@@ -1,27 +1,21 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :reject_user, only: :edit
+  before_action :set_user, only: [:show, :edit, :update, :favorites]
+  before_action :set_q, only: [:index, :show, :favorites]
+  before_action :set_all_ranks, only: [:index, :show, :favorites]
   def index
     @users = User.page(params[:page]).per(7)
-    @q = Best.ransack(params[:q])
-    @bests = @q.result
-    @all_ranks = Best.find(Favorite.group(:best_id).order(Arel.sql('count(best_id) desc')).limit(5).pluck(:best_id))
   end
 
   def show
-    @user = User.find(params[:id])
-    @q = Best.ransack(params[:q])
-    @bests = @q.result.order(updated_at: :desc)
     @bests_user = @user.bests.order(updated_at: :desc)
-    @all_ranks = Best.find(Favorite.group(:best_id).order(Arel.sql('count(best_id) desc')).limit(5).pluck(:best_id))
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update(user_params)
       redirect_to user_path(@user.id)
     else
@@ -30,11 +24,7 @@ class UsersController < ApplicationController
   end
 
   def favorites
-    @user = User.find(params[:id])
-    @q = Best.ransack(params[:q])
-    @bests = @q.result.order(updated_at: :desc)
     @bests_favorite = @user.favorite_bests
-    @all_ranks = Best.find(Favorite.group(:best_id).order('count(best_id) desc').limit(5).pluck(:best_id))
   end
 
   private
@@ -46,5 +36,17 @@ class UsersController < ApplicationController
   def reject_user
     @user = User.find(params[:id])
     redirect_to user_path(current_user.id) unless @user == current_user
+  end
+
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+  def set_q
+    @q = Best.ransack(params[:q])
+  end
+
+  def set_all_ranks
+    @all_ranks = Best.find(Favorite.group(:best_id).order(Arel.sql('count(best_id) desc')).limit(5).pluck(:best_id))
   end
 end

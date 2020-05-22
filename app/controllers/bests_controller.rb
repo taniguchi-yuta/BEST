@@ -1,6 +1,9 @@
 class BestsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destory]
-  before_action :reject_user, only: :edit
+  before_action :reject_user, only: [:edit, :destroy]
+  before_action :set_best, only: [:show, :edit, :update, :destroy]
+  before_action :set_q, only: [:index, :show]
+  before_action :set_all_ranks, only: [:index, :show]
   def new
     @best = Best.new
   end
@@ -16,27 +19,19 @@ class BestsController < ApplicationController
   end
 
   def index
-    @q = Best.ransack(params[:q])
     @bests = @q.result.order(updated_at: :desc)
-    @all_ranks = Best.find(Favorite.group(:best_id).order(Arel.sql('count(best_id) desc')).limit(5).pluck(:best_id))
   end
 
   def show
-    @best = Best.find(params[:id])
-    @q = Best.ransack(params[:q])
-    @bests = @q.result
     @user = @best.user
     @best_comment = BestComment.new
     @best_comments = @best.best_comments
-    @all_ranks = Best.find(Favorite.group(:best_id).order(Arel.sql('count(best_id) desc')).limit(5).pluck(:best_id))
   end
 
   def edit
-    @best = Best.find(params[:id])
   end
 
   def update
-    @best = Best.find(params[:id])
     if @best.update(best_params)
       redirect_to best_path(@best.id)
     else
@@ -45,7 +40,6 @@ class BestsController < ApplicationController
   end
 
   def destroy
-    @best = Best.find(params[:id])
     @best.destroy
     redirect_to bests_path
   end
@@ -59,5 +53,17 @@ class BestsController < ApplicationController
   def reject_user
     @best = Best.find(params[:id])
     redirect_to user_path(current_user.id) unless @best.user == current_user
+  end
+
+  def set_best
+    @best = Best.find(params[:id])
+  end
+
+  def set_q
+    @q = Best.ransack(params[:q])
+  end
+
+  def set_all_ranks
+    @all_ranks = Best.find(Favorite.group(:best_id).order(Arel.sql('count(best_id) desc')).limit(5).pluck(:best_id))
   end
 end

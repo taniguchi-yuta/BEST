@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :favorites]
   before_action :set_q, only: [:index, :show, :favorites]
   before_action :set_all_ranks, only: [:index, :show, :favorites]
+  before_action :check_guest, only: :update
   def index
     @users = User.page(params[:page]).per(7)
   end
@@ -17,6 +18,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
+      flash[:success] = 'プロフィールを編集しました'
       redirect_to user_path(@user.id)
     else
       render :edit
@@ -48,5 +50,12 @@ class UsersController < ApplicationController
 
   def set_all_ranks
     @all_ranks = Best.find(Favorite.group(:best_id).order(Arel.sql('count(best_id) desc')).limit(5).pluck(:best_id))
+  end
+
+  def check_guest
+    if @user.email == 'guest@example.com'
+      flash[:danger] = 'ゲストユーザーの編集はできません。'
+      redirect_to edit_user_path(@user)
+    end
   end
 end

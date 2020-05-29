@@ -11,20 +11,21 @@
           <div class="pull-right">
             <div class="text-center">
               <p><%= attachment_image_tag @user, :profile_image, :fill, 80, 80,class: "img-circle", format: 'jpeg', fallback: "no_image.png", size: '80x80',class: "img-circle" %></p>
+              <div><strong>投稿したユーザー</strong><br>
               <%= @user.name %>
               <div>
                 <% if @user.sex.blank? %>
-                  <span class="label label-default">性別未設定</span>
+                  <h4 class="block"><span class="label label-default">性別未設定</span></h4>
                 <% else %>
                   <% case @user.sex %>
                   <% when 'male' %>
-                  <td>男性</td>
+                  <h4 class="block"><span class="label label-primary">男性</span></h4>
                   <% when 'female' %>
-                  <td>女性</td>
+                  <h4 class="block"><span class="label label-danger">女性</span></h4>
                   <% end %>
                 <% end %>
                 <% if @user.age.blank? %>
-                  <span class="label label-default">年齢未設定</span>
+                  <h4 class="block"><span class="label label-default">年齢未設定</span></h4>
                 <% else %>
                   <%= @user.age %>
                 <% end %>
@@ -32,33 +33,32 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-md-9 col-md-offset-2">
-          <p class="well well-sm text-center lead"><span><%= @best.genre %></span></p>
-          <p><span>BEST名称: </span><%= @best.best_name %></p>
-          <p><span>URL: </span><%= raw Rinku.auto_link(@best.best_url, :all,'target="_blank"') %></p>
-          <p><span>紹介文: </span><%= @best.recommend %></p>
-          <p><span>更新日: </span><%= @best.updated_at.try(:strftime,"%Y年%-m月%-d日") %></p>
-          <div class="favorite_<%= @best.id %> size-big">
-             <%= render 'favorites/favorite', best: @best %>
-          </div>
-          <% if @best.user == current_user %>
-            <%= link_to "編集する", edit_best_path(@best), class: "btn btn-warning" %>
-            <%= link_to "削除する", best_path(@best),class: "btn btn-danger", method: :delete, "data-confirm" => "本当に消しますか?" %>
+        <p class="well well-sm text-center lead"><span><%= @best.genre %></span></p>
+        <div class="mt-15">
+          <p><span><strong>BEST名称: </strong></span><%= @best.best_name %></p>
+          <p><span><strong>URL: </strong></span><%= raw Rinku.auto_link(@best.best_url, :all,'target="_blank"') %></p>
+          <p><span><strong>紹介文: </strong></span><%= @best.recommend %></p>
+          <p><span><strong>更新日: </strong></span><%= @best.updated_at.try(:strftime,"%Y年%-m月%-d日") %></p>
+        </div>
+        <div class="favorite_<%= @best.id %> size-big">
+          <%= render 'favorites/favorite', best: @best %>
+        </div>
+        <% if @best.user == current_user %>
+          <%= link_to "BESTを編集する", edit_best_path(@best), class: "btn btn-warning" %>
+          <%= link_to "BESTを削除する", best_path(@best),class: "btn btn-danger", method: :delete, "data-confirm" => "本当に消しますか?" %>
+        <% end %>
+
+        <p class="mt-15"><コメント一覧></p>
+        <table class="show-tb comment_<%= @best.id %>">
+          <%= render 'comment', best_comments: @best.best_comments %>
+        </table>
+        <div class="comment-form mt-15">
+          <% if user_signed_in? %>
+          <%= form_for [@best, @best_comment], data: {remote: true} do |f| %>
+          <%= f.text_area :comment, class:"form-control",rows: 3, placeholder:"コメント" %>
+          <%= f.submit 'コメントする', class: "btn btn-lg btn-block btn-success" %>
           <% end %>
         </div>
-      </div>
-      <p><コメント一覧></p>
-      <table class="show-tb comment_<%= @best.id %>">
-        <%= render 'comment', best_comments: @best.best_comments %>
-      </table>
-      <div class="comment-form">
-        <% if user_signed_in? %>
-        <%= form_for [@best, @best_comment], data: {remote: true} do |f| %>
-        <%= f.text_area :comment, class:"form-control", placeholder:"コメント" %>
-        <%= f.submit 'コメントする', class: "btn btn-lg btn-block btn-success" %>
-        <% end %>
       </div>
       <% end %>
     </div>

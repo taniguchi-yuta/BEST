@@ -4,29 +4,32 @@
       <%= render 'shares/sidebar', all_ranks: @all_ranks, best: @best, q: @q %>
   	</div>
 	<div class="col-lg-9">
+	  <%= render 'shares/flash.messages' %>
 	  <div class="row">
 	    <div class="col-md-8 col-md-offset-2">
 	      <div class="text-center">
 		    <%= attachment_image_tag @user, :profile_image, :fill, 200, 200, class: "img-circle", format: 'jpeg', fallback: "no_image.png", size: '200x200',class: "img-circle" %>
-		    <p><%= @user.name %></p>
+		    <div><span class="glyphicon glyphicon-user" aria-hidden="true"></span><strong>ユーザー名</strong><br>
+		    <%= @user.name %></div>
 			<div>
 			  <% if @user.sex.blank? %>
-			    <span class="label label-default">性別未設定</span>
+			    <h4 class="block"><span class="label label-default">性別未設定</span></h4>
 			  <% else %>
 		        <% case @user.sex %>
 		  	    <% when 'male' %>
-		        <td>男性</td>
+		        <h4 class="block"><span class="label label-primary">男性</span></h4>
 		        <% when 'female' %>
-		        <td>女性</td>
+		        <h4 class="block"><span class="label label-danger">女性</span></h4>
 			    <% end %>
 			  <% end %>
 			  <% if @user.age.blank? %>
-			    <span class="label label-default">年齢未設定</span>
+			    <h4 class="block"><span class="label label-default">年齢未設定</span></h4>
 			  <% else %>
-			    <%= @user.age %>
+			    <strong><%= @user.age %></strong>
 			  <% end %>
 			</div>
-			<p><%= @user.introduction %></p>
+			<div><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span><strong>プロフィール</strong><br>
+			<%= @user.introduction %></div>
 			<% if @user.id == current_user.id %>
 			  <%= link_to "編集する", edit_user_path(@user), class: "btn btn-warning" %>
 			  <%= link_to "お気に入り一覧", favorites_user_path(@user), class: "btn btn-info" %>
@@ -51,7 +54,7 @@
 		  </div>
 	      <% end %>
 	    <% else %>
-	      <h1 class="text-muted top-padding">投稿はありません</h1>
+	      <h1 class="text-muted">投稿はありません</h1>
 	    <% end %>
 	  </div>
 	</div>

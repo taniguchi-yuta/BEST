@@ -18,11 +18,13 @@ RSpec.describe 'Bestモデルのテスト', type: :model do
           expect(Best.reflect_on_association(:user).macro).to eq :belongs_to
         end
       end
+
       context 'favoriteモデルとの関係' do
         it '1:Nとなっている' do
           expect(Best.reflect_on_association(:favorites).macro).to eq :has_many
         end
       end
+
       context 'commentモデルとの関係' do
         it '1:Nとなっている' do
           expect(Best.reflect_on_association(:best_comments).macro).to eq :has_many

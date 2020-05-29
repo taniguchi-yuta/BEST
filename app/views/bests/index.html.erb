@@ -19,9 +19,9 @@
                 <% else %>
                   <% case best.user.sex %>
                   <% when 'male' %>
-                  <%= "男性" %>
+                  <span class="label label-primary">男性</span>
                   <% when 'female' %>
-                  <%= "女性" %>
+                  <span class="label label-danger">女性</span>
                   <% end %>
                 <% end %>
                 <% if best.user.age.blank? %>

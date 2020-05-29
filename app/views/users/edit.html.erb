@@ -2,6 +2,7 @@
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
       <h2>ユーザ編集</h2>
+      <%= render 'shares/flash.messages' %>
       <%= form_for(@user) do |f| %>
       <div class="form-body">
       	<div class=" text-center">
@@ -19,23 +20,37 @@
 			<%= f.radio_button :sex, :female %>
 			<%= f.label :sex, "女性", {value: :female, style: "display: inline-block;"} %>
 		  </div>
+
 		  <div class="form-group">
 			<%= f.label :"年代" %>
-			<%= f.select :age, [["10代", "10代"], ["20代", "20代"],["30代", "30代"], ["40代", "40代"], ["50代", "50代"], ["60代", "60代"], ["70代", "70代"], ["80代", "80代"]] %>
+			<%= f.select :age, [["10代", "10代"], ["20代", "20代"],["30代", "30代"], ["40代", "40代"], ["50代", "50代"], ["60代", "60代"], ["70代", "70代"], ["80代", "80代"]], :prompt => true %>
 		  </div>
 		</div>
+
 		<div class="form-group">
-			<%= f.label :"名前" %><br />
-			<%= render 'shares/error', model: @user %>
-			<%= f.text_field :name, autofocus: true, class:"form-control", placeholder:"名前"%>
+		  <%= f.label :"ユーザー名" %><br />
+		  <%= render 'shares/error', model: @user %>
+		  <% if @user.email == "guest@example.com" %>
+		    <%= f.text_field :name, autofocus: true, class:"form-control", placeholder:"名前", disabled: true%>
+		  <% else %>
+		    <%= f.text_field :name, autofocus: true, class:"form-control", placeholder:"名前"%>
+		  <% end %>
 		</div>
+
 		<div class="form-group">
-			<%= f.label :"プロフィール" %><br />
-			<%= f.text_area :introduction, class:"form-control", placeholder:"プロフィール"%>
+		  <%= f.label :"プロフィール" %><br />
+		  <%= f.text_area :introduction, class:"form-control",rows: 5, placeholder:"プロフィール"%>
 		</div>
+		<% if @user.email == "guest@example.com" %>
+	  	  <p class="color_red">ゲストユーザーはユーザー編集できない設定となっております。</p>
+	  	<% end %>
 		<%= f.submit "更新する", class: "btn btn-lg btn-block btn-success" %>
 	  </div>
 	  <% end %>
+	  <div class="pull-right">
+	    <%= link_to "詳細設定", edit_user_registration_path(@user), class: "btn btn-warning" %>
+	    <%= link_to "もどる", user_path(@user), class: "btn btn-default" %>
+	  </div>
 	</div>
   </div>
 </div>

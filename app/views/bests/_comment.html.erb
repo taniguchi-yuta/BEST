@@ -3,16 +3,16 @@
     <td>
       <div class="mr-15">
         <%= link_to user_path(best_comment.user), class: "user_#{best_comment.user.id}" do %>
-        <%= attachment_image_tag best_comment.user, :profile_image, :fill, 60, 60,class: "img-circle", fallback: "no_image.png", size: "60x60" %><br />
+        <%= attachment_image_tag best_comment.user, :profile_image, :fill, 60, 60, class: "img-circle", fallback: "no_image.png", size: "60x60" %><br />
         <span class="font-sm"><%= best_comment.user.name %></span>
         <% end %>
       </div>
     </td>
-    <td><p><%= best_comment.comment %><br />
-    <%= best_comment.updated_at.try(:strftime,"-%Y年%-m月%-d日 %H時%M分-") %></p>
+    <td><p><%= best_comment.comment %></p>
+    <span class="border"><%= best_comment.updated_at.try(:strftime,"-%Y年%-m月%-d日 %H時%M分-") %></span>
     <% if current_user == best_comment.user %>
-      <p><%= link_to '削除', best_best_comments_path(best_comment.id), method: :delete, remote: true, class: 'btn-sm btn-danger' %>
-    <% end %></p>
+      <%= link_to 'コメントを削除する', best_best_comments_path(best_comment.id), method: :delete, remote: true, class: 'btn-sm btn-danger' %>
+    <% end %>
     </td>
   </tr>
 <% end %>

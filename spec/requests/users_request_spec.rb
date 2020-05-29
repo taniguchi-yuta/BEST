@@ -97,6 +97,7 @@ describe 'ユーザーのテスト' do
         expect(current_path).to eq('/users/' + user.id.to_s + '/edit')
       end
     end
+
     context '他人の編集画面への遷移' do
       it '遷移できない' do
         visit edit_user_path(test_user2)

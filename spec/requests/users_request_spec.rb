@@ -14,7 +14,7 @@ describe 'ユーザー認証のテスト' do
         fill_in 'user[password_confirmation]', with: 'password'
         click_button '登録する'
 
-        expect(page).to have_content 'マイページ'
+        expect(page).to have_content 'アカウント登録が完了しました。'
       end
       it '新規登録に失敗する' do
         fill_in 'user[name]', with: ''
@@ -55,6 +55,20 @@ describe 'ユーザー認証のテスト' do
       end
     end
   end
+
+  describe 'かんたんログイン' do
+    before do
+      visit new_user_session_path
+    end
+
+    context 'ログイン画面に遷移' do
+      it 'ログインに成功する' do
+        click_link 'かんたんログイン'
+
+        expect(page).to have_content 'ゲストユーザーとしてログインしました。'
+      end
+    end
+  end
 end
 
 describe 'ユーザーのテスト' do
@@ -80,17 +94,24 @@ describe 'ユーザーのテスト' do
       it '名前が表示される' do
         expect(page).to have_content(user.name)
       end
+      it '年齢が表示される' do
+        expect(page).to have_content(user.age)
+      end
       it '自己紹介が表示される' do
         expect(page).to have_content(user.introduction)
       end
       it '編集リンクが表示される' do
         visit user_path(user)
-        expect(page).to have_link '', href: edit_user_path(user)
+        expect(page).to have_link '編集する', href: edit_user_path(user)
+      end
+      it 'お気に入り一覧リンクが表示される' do
+        visit user_path(user)
+        expect(page).to have_link 'お気に入り一覧', href: favorites_user_path(user)
       end
     end
   end
 
-  describe '編集のテスト' do
+  describe 'ユーザー編集のテスト' do
     context '自分の編集画面への遷移' do
       it '遷移できる' do
         visit edit_user_path(user)
@@ -113,23 +134,36 @@ describe 'ユーザーのテスト' do
       it 'ユーザ編集と表示される' do
         expect(page).to have_content('ユーザ編集')
       end
-      it '名前編集フォームに自分の名前が表示される' do
-        expect(page).to have_field 'user[name]', with: user.name
-      end
       it '画像編集フォームが表示される' do
         expect(page).to have_field 'user[profile_image]'
       end
-      it '自己紹介編集フォームに自分の自己紹介が表示される' do
+      it '性別設定フォームが表示される' do
+        expect(page).to have_field 'user[sex]', with: user.sex
+      end
+      it '年代設定フォームが表示される' do
+        expect(page).to have_field 'user[age]', with: user.age
+      end
+      it 'ユーザー名編集フォームに自分のユーザー名が表示される' do
+        expect(page).to have_field 'user[name]', with: user.name
+      end
+      it 'プロフィール編集フォームに自分のプロフィールが表示される' do
         expect(page).to have_field 'user[introduction]', with: user.introduction
+      end
+      it '詳細設定リンクが表示される' do
+        expect(page).to have_link '詳細設定', href: edit_user_registration_path(user)
+      end
+      it 'もどるリンクが表示される' do
+        expect(page).to have_link 'もどる', href: user_path(user)
       end
       it '編集に成功する' do
         click_button '更新する'
         expect(current_path).to eq('/users/' + user.id.to_s)
+        expect(page).to have_content 'プロフィールを編集しました'
       end
       it '編集に失敗する' do
         fill_in 'user[name]', with: ''
         click_button '更新する'
-        expect(page).to have_content '名前を入力してください'
+        expect(page).to have_content 'ユーザー名を入力してください'
         expect(current_path).to eq('/users/' + user.id.to_s)
       end
     end
@@ -147,7 +181,7 @@ describe 'ユーザーのテスト' do
       it '自分と他の人の画像が表示される' do
         expect(all('img').size).to eq(2)
       end
-      it '自分と他の人の名前が表示される' do
+      it '自分と他の人のユーザー名が表示される' do
         expect(page).to have_content user.name
         expect(page).to have_content test_user2.name
       end

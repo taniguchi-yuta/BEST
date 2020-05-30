@@ -5,9 +5,11 @@ ja:
       best: BEST
     attributes:
       user:
-        name: 名前
+        name: ユーザー名
+        introduction: プロフィール
       best:
         best_name: BEST名称
+        recommend: 紹介文
 
   views:
     pagination:

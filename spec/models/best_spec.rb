@@ -10,6 +10,17 @@ RSpec.describe 'Bestモデルのテスト', type: :model do
         best.best_name = ''
         expect(best.valid?).to eq false
       end
+      it '15文字以下であること' do
+        best.best_name = Faker::Lorem.characters(number: 16)
+        expect(best.valid?).to eq false
+      end
+
+      context 'recommendカラム' do
+        it '201文字以下であること' do
+          best.recommend = Faker::Lorem.characters(number: 201)
+          expect(best.valid?).to eq false
+        end
+      end
     end
 
     describe 'アソシエーションのテスト' do

@@ -8,7 +8,8 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :favorite_bests, through: :favorites, source: :best
   has_many :best_comments, dependent: :destroy
-  validates :name, presence: true
+  validates :name, presence: true, length: { maximum: 10 }
+  validates :introduction, length: { maximum: 200 }
 
   def update_without_current_password(params, *options)
     params.delete(:current_password)

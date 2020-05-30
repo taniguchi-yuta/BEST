@@ -22,6 +22,9 @@ describe '投稿のテスト' do
       it '新規投稿と表示される' do
         expect(page).to have_content '新規投稿'
       end
+      it '画像選択フォームが表示される' do
+        expect(page).to have_field 'best[best_image]'
+      end
       it 'BEST名称フォームが表示される' do
         expect(page).to have_field 'best[best_name]'
       end
@@ -42,6 +45,7 @@ describe '投稿のテスト' do
         expect(current_path).to eq(bests_path)
       end
       it '投稿に失敗する' do
+        fill_in 'best[best_name]', with: ''
         click_button '投稿する'
         expect(page).to have_content 'BEST名称を入力してください'
         expect(current_path).to eq('/bests')
@@ -69,14 +73,17 @@ describe '投稿のテスト' do
         visit edit_best_path(best)
       end
 
-      it 'BEST名称フォームが表示される' do
-        expect(page).to have_field 'best[best_name]'
+      it '画像選択フォームが表示される' do
+        expect(page).to have_field 'best[best_image]'
       end
-      it 'URLフォームが表示される' do
+      it 'BEST名称編集フォームに自分が投稿したBEST名称が表示される' do
+        expect(page).to have_field 'best[best_name]', with: best.best_name
+      end
+      it 'URLフォームに自分が投稿したURLが表示される' do
         expect(page).to have_field 'best[best_url]'
       end
-      it '紹介文フォームが表示される' do
-        expect(page).to have_field 'best[recommend]'
+      it '紹介文フォームに自分が投稿した紹介文が表示される' do
+        expect(page).to have_field 'best[recommend]', with: best.recommend
       end
       it '更新するボタンが表示される' do
         expect(page).to have_button '更新する'
@@ -115,6 +122,10 @@ describe '投稿のテスト' do
       it '自分と他人のBEST名称が表示される' do
         expect(page).to have_content best.best_name
         expect(page).to have_content best2.best_name
+      end
+      it '自分と他人のBESTのジャンルが表示される' do
+        expect(page).to have_content best.genre
+        expect(page).to have_content best2.genre
       end
     end
   end

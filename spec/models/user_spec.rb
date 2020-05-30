@@ -13,6 +13,19 @@ RSpec.describe 'Userモデルのテスト', type: :model do
         test_user.name = ''
         is_expected.to eq false
       end
+      it '10文字以下であること' do
+        test_user.name = Faker::Lorem.characters(number: 11)
+        is_expected.to eq false
+      end
+    end
+
+    context 'introductionカラム' do
+      let(:test_user) { user }
+
+      it '200文字以下であること' do
+        test_user.introduction = Faker::Lorem.characters(number: 201)
+        is_expected.to eq false
+      end
     end
   end
 

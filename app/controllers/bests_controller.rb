@@ -64,6 +64,6 @@ class BestsController < ApplicationController
   end
 
   def set_all_ranks
-    @all_ranks = Best.find(Favorite.group(:best_id).order(Arel.sql('count(best_id) desc')).limit(5).pluck(:best_id))
+    @all_ranks = Best.create_all_ranks
   end
 end

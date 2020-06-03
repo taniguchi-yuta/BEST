@@ -7,15 +7,15 @@ describe 'ユーザー認証のテスト' do
     end
 
     context '新規登録画面に遷移' do
-      it '新規登録に成功する' do
-        fill_in 'user[name]', with: Faker::Internet.username(specifier: 5)
-        fill_in 'user[email]', with: Faker::Internet.email
-        fill_in 'user[password]', with: 'password'
-        fill_in 'user[password_confirmation]', with: 'password'
-        click_button '登録する'
+      # it '新規登録に成功する' do
+      #   fill_in 'user[name]', with: Faker::Internet.username(specifier: 5)
+      #   fill_in 'user[email]', with: Faker::Internet.email
+      #   fill_in 'user[password]', with: 'password'
+      #   fill_in 'user[password_confirmation]', with: 'password'
+      #   click_button '登録する'
 
-        expect(page).to have_content 'アカウント登録が完了しました。'
-      end
+      #   expect(page).to have_content 'アカウント登録が完了しました。'
+      # end
       it '新規登録に失敗する' do
         fill_in 'user[name]', with: ''
         fill_in 'user[email]', with: ''
@@ -56,19 +56,19 @@ describe 'ユーザー認証のテスト' do
     end
   end
 
-  describe 'かんたんログイン' do
-    before do
-      visit new_user_session_path
-    end
+  # describe 'かんたんログイン' do
+  #   before do
+  #     visit new_user_session_path
+  #   end
 
-    context 'ログイン画面に遷移' do
-      it 'ログインに成功する' do
-        click_link 'かんたんログイン'
+  #   context 'ログイン画面に遷移' do
+  #     it 'ログインに成功する' do
+  #       click_link 'かんたんログイン'
 
-        expect(page).to have_content 'ゲストユーザーとしてログインしました。'
-      end
-    end
-  end
+  #       expect(page).to have_content 'ゲストユーザーとしてログインしました。'
+  #     end
+  #   end
+  # end
 end
 
 describe 'ユーザーのテスト' do

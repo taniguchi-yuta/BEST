@@ -9,7 +9,7 @@ jobs:
       - image: circleci/mysql:5.5
         environment:
           - MYSQL_ALLOW_EMPTY_PASSWORD: "true"
-          - MYSQL_ROOT_HOST: "127.0.0.1"
+          - MYSQL_ROOT_HOST: "%"
 
     working_directory: ~/BEST
 
@@ -38,8 +38,8 @@ jobs:
       - run:
           name: Databasesetup
           command: |
-            bundle exec rake db:create
-            bundle exec rake db:schema:load
+            bundle exec rails db:create
+            bundle exec rails db:schema:load
       # run rubocop
       - run:
           name: Rubocop

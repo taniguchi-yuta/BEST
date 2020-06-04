@@ -26,6 +26,7 @@ class BestsController < ApplicationController
     @user = @best.user
     @best_comment = BestComment.new
     @best_comments = @best.best_comments
+    @best_image = "https://rails-portfolio-image.s3-ap-northeast-1.amazonaws.com/store/" + @best.best_image_id + "-thumbnail."
   end
 
   def edit

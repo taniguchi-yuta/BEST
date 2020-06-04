@@ -1,0 +1,19 @@
+current directory: /myapp/vendor/bundle/ruby/2.5.0/gems/rinku-2.0.6/ext/rinku
+/usr/local/bin/ruby -I /usr/local/lib/ruby/site_ruby/2.5.0 -r ./siteconf20200604-1-1m47hr7.rb extconf.rb
+creating Makefile
+
+current directory: /myapp/vendor/bundle/ruby/2.5.0/gems/rinku-2.0.6/ext/rinku
+make "DESTDIR=" clean
+
+current directory: /myapp/vendor/bundle/ruby/2.5.0/gems/rinku-2.0.6/ext/rinku
+make "DESTDIR="
+compiling autolink.c
+compiling buffer.c
+compiling rinku.c
+compiling rinku_rb.c
+compiling utf8.c
+linking shared-object rinku.so
+
+current directory: /myapp/vendor/bundle/ruby/2.5.0/gems/rinku-2.0.6/ext/rinku
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 rinku.so ./.gem.20200604-1-1h98qy4

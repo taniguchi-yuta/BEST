@@ -23,12 +23,12 @@
 - html
 - JavaScript
 
+## アプリケーション構成図
+![image](https://user-images.githubusercontent.com/59640916/83932695-61e27c80-a7df-11ea-979b-4f8ae244c342.png)
+
 ## 設計書
 ### AWSインフラ設計書
 https://docs.google.com/spreadsheets/d/1j1iNymT3VfOGbmUFEDs-ESC6ZMFIHZaF2eJWg9XQqg8/edit#gid=0
-
-## アプリケーション構成図
-![image](https://user-images.githubusercontent.com/59640916/83932695-61e27c80-a7df-11ea-979b-4f8ae244c342.png)
 
 ## 機能一覧
 - **ユーザー機能**

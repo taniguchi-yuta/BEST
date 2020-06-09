@@ -42,7 +42,7 @@
 		  <%= f.text_area :introduction, class:"form-control",rows: 5, placeholder:"プロフィール"%>
 		</div>
 		<% if @user.email == "guest@example.com" %>
-	  	  <p class="color_red">ゲストユーザーはユーザー編集できない設定となっております。</p>
+	  	  <p class="color_red">※ゲストユーザーはユーザー編集できない設定となっております。</p>
 	  	<% end %>
 		<%= f.submit "更新する", class: "btn btn-lg btn-block btn-success" %>
 	  </div>

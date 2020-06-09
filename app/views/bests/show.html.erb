@@ -10,7 +10,9 @@
           <%= attachment_image_tag @best, :best_image, :fill, 250, 200, format: 'jpeg', fallback: "no_image.png", size:'250x200' %>
           <div class="pull-right">
             <div class="text-center">
-              <p><%= attachment_image_tag @user, :profile_image, :fill, 80, 80,class: "img-circle", format: 'jpeg', fallback: "no_image.png", size: '80x80',class: "img-circle" %></p>
+              <%= link_to user_path(@user) do %>
+              <p><%= attachment_image_tag @user, :profile_image, :fill, 80, 80, format: 'jpeg', fallback: "no_image.png", size: '80x80',class: "img-circle pointer" %><% end %>
+              </p>
               <div><strong>投稿したユーザー</strong><br>
               <%= @user.name %>
               <div>

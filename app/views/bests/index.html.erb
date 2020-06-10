@@ -5,6 +5,7 @@
     </div>
     <div class="col-lg-9">
       <h2>BEST一覧</h2>
+      <%= render 'shares/flash.messages' %>
       <div class="text-center">
         <% @bests.each do |best| %>
           <div class="mr-15 block"><%= link_to best_path(best) do %>

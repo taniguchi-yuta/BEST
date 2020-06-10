@@ -13,6 +13,7 @@ class BestsController < ApplicationController
     @best.user_id = current_user.id
     if @best.save
       redirect_to bests_path
+      flash[:notice] = '新規投稿しました。'
     else
       render :new
     end
@@ -34,6 +35,7 @@ class BestsController < ApplicationController
   def update
     if @best.update(best_params)
       redirect_to best_path(@best.id)
+      flash[:notice] = 'BESTを編集しました'
     else
       render :edit
     end
@@ -42,6 +44,7 @@ class BestsController < ApplicationController
   def destroy
     @best.destroy
     redirect_to bests_path
+    flash[:error] = 'BESTを削除しました。'
   end
 
   private

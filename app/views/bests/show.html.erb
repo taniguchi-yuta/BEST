@@ -5,6 +5,7 @@
     </div>
     <div class="col-lg-9">
       <h2>BEST詳細</h2>
+      <%= render 'shares/flash.messages' %>
       <div class="row">
         <div class="col-md-9 col-md-offset-2">
           <%= attachment_image_tag @best, :best_image, :fill, 250, 200, format: 'jpeg', fallback: "no_image.png", size:'250x200' %>

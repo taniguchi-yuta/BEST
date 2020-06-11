@@ -23,7 +23,7 @@ describe 'ユーザー認証のテスト' do
         fill_in 'user[password_confirmation]', with: ''
         click_button '登録する'
 
-        expect(page).to have_content 'エラー'
+        expect(page).to have_content '新規会員登録'
       end
     end
   end
@@ -55,20 +55,6 @@ describe 'ユーザー認証のテスト' do
       end
     end
   end
-
-  # describe 'かんたんログイン' do
-  #   before do
-  #     visit new_user_session_path
-  #   end
-
-  #   context 'ログイン画面に遷移' do
-  #     it 'ログインに成功する' do
-  #       click_link 'かんたんログイン'
-
-  #       expect(page).to have_content 'ゲストユーザーとしてログインしました。'
-  #     end
-  #   end
-  # end
 end
 
 describe 'ユーザーのテスト' do

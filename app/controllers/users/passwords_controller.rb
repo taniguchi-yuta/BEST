@@ -3,7 +3,8 @@ class Users::PasswordsController < Devise::PasswordsController
 
   def check_guest
     if params[:user][:email].downcase == 'guest@example.com'
-      redirect_to root_path, alert: 'ゲストユーザーの変更・削除はできません。'
+      redirect_to root_path
+      flash[:error] = 'ゲストユーザーの変更・削除はできません。'
     end
   end
 end

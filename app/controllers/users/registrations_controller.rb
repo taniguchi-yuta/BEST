@@ -3,8 +3,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def check_guest
     if resource.email == 'guest@example.com'
-      flash[:danger] = 'ゲストユーザーの変更・削除はできません'
       redirect_to edit_user_registration_path(@user)
+      flash[:error] = 'ゲストユーザーの変更・削除はできません'
     end
   end
 

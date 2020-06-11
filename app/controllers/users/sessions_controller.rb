@@ -6,7 +6,7 @@ class Users::SessionsController < Devise::SessionsController
       user.password = SecureRandom.urlsafe_base64
     end
     sign_in user
-    flash[:success] = 'ゲストユーザーとしてログインしました。'
+    flash[:notice] = 'ゲストユーザーとしてログインしました。'
     redirect_to user_path(user)
   end
 end

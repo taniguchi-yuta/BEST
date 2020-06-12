@@ -1,6 +1,7 @@
 # BEST
 - 便利で優れたサービスや物の情報を共有できるアプリです。<br>
-- **Docker,docker-compose**、**AWS**の各種サービス、**circleCI**を活用しました。<br>
+- **Docker,docker-compose**、**AWS**の各種サービスを活用し、<br>
+**circleCI**で**CI/CDパイプライン**を構築しました。<br>
 - Githubでは**issue**と**pull request**を活用し擬似でチーム開発を再現しました。
 
 ![image](https://user-images.githubusercontent.com/59640916/83931359-322f7680-a7d7-11ea-943e-69cac4067779.png)
@@ -17,14 +18,15 @@
 - Nginx, Puma
 - AWS（VPC, EC2, RDS, Route 53, ELB, ACM, CloudWatch）
 - Docker, docker-compose
-- CircleCI
+- CircleCI(CI/CDパイプラインを構築)
+- Capistrano
 - RSpec
 - Bootstrap
-- html
+- html/css
 - JavaScript
 
 ## アプリケーション構成図
-![image](https://user-images.githubusercontent.com/59640916/83932695-61e27c80-a7df-11ea-979b-4f8ae244c342.png)
+![image](https://user-images.githubusercontent.com/59640916/84530890-a067c200-ad1e-11ea-83a3-22e3635eb8fe.png)
 
 ## 設計書
 ### AWSインフラ設計書

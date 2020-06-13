@@ -48,7 +48,8 @@
         </div>
         <% if @best.user == current_user %>
           <%= link_to "BESTを編集する", edit_best_path(@best), class: "btn btn-warning" %>
-          <%= link_to "BESTを削除する", best_path(@best),class: "btn btn-danger", method: :delete, "data-confirm" => "本当に消しますか?" %>
+          <%= link_to "BESTを削除する", best_path(@best),class: "btn btn-danger", method: :delete,
+           data:{confirm: '<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true" style="color: #d9534f;"></span>本当に削除しますか?', cancel: 'やめる', commit: '削除する'} %>
         <% end %>
 
         <p class="mt-15"><コメント一覧></p>

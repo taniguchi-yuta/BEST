@@ -38,7 +38,8 @@
       </div>
       <% end %>
       <div class="pull-right">
-        <%= link_to "アカウント削除", registration_path(resource_name), class: "btn btn-danger", data: { confirm: "本当に削除していいですか?" }, method: :delete %>
+        <%= link_to "アカウント削除", registration_path(resource_name), class: "btn btn-danger", method: :delete,
+          data:{confirm: "<span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true' style='color: #d9534f;'></span>本当に<strong>#{@user.name}</strong>さんのアカウントを削除しますか?", verify: "#{@user.name}", verify_text: "削除する場合はユーザー名を入力してください",cancel: 'やめる', commit: '削除する'} %>
         <%= link_to "もどる", edit_user_path(@user), class: "btn btn-default" %>
       </div>
     </div>

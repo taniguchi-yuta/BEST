@@ -77,6 +77,7 @@ gem 'bootstrap-sass', '~> 3.4.1'
 gem 'jquery-rails'
 gem 'rinku'
 gem 'dotenv-rails'
+gem 'data-confirm-modal'
 
 group :production do
   gem 'mysql2'

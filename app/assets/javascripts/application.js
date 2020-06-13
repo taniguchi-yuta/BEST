@@ -16,6 +16,7 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require_tree .
+//= require data-confirm-modal
 
 $( document ).on('turbolinks:load', function() {
     function readURL(input) {

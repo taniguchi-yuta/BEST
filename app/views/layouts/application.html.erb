@@ -10,9 +10,14 @@
   </head>
 
   <body>
-    <%= render 'shares/header' %>
-    <div class="top-padding">
-      <%= yield %>
+    <div class="container">
+      <%= render 'shares/header' %>
+      <div class="top-padding pb-60">
+        <%= yield %>
+      </div>
+      <footer>
+        <p>Copyright &copy; 2020 BEST, All Rights Reserved.</p>
+      </footer>
     </div>
   </body>
 </html>

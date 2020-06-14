@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   before_action :set_all_ranks, only: [:index, :show, :favorites]
   before_action :check_guest, only: :update
   def index
-    @users = User.page(params[:page]).per(7)
+    @users = User.page(params[:page]).per(6)
   end
 
   def show

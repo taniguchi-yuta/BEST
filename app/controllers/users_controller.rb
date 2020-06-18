@@ -26,7 +26,7 @@ class UsersController < ApplicationController
   end
 
   def favorites
-    @bests_favorite = @user.favorite_bests
+    @bests_favorite = @user.favorite_bests.page(params[:page]).per(9)
   end
 
   private

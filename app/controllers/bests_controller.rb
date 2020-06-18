@@ -20,7 +20,7 @@ class BestsController < ApplicationController
   end
 
   def index
-    @bests = @q.result.order(updated_at: :desc)
+    @bests = @q.result.order(updated_at: :desc).page(params[:page]).per(9)
   end
 
   def show

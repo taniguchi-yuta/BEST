@@ -9,7 +9,7 @@
       <div class="text-center">
         <% @bests.each do |best| %>
           <div class="mr-15 block"><%= link_to best_path(best) do %>
-            <%= attachment_image_tag best, :best_image, size:'250x200', class: "pointer", fallback: "no_image.png", size:'250x200' %>
+            <%= attachment_image_tag best, :best_image, size:'250x200', format: 'jpeg', class: "pointer", fallback: "no_image.png", size:'250x200' %>
             <% end %>
             <p class="well well-sm lead"><%= best.genre %></p>
             <div class="panel panel-default">

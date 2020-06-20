@@ -41,7 +41,9 @@
           <% else %>
             <h1 class="text-muted top-padding">お気に入りはありません。</h1>
           <% end %>
-          <%= paginate @bests_favorite %>
+          <div class="text-center">
+            <%= paginate @bests_favorite %>
+          </div>
         </div>
       </div>
     </div>

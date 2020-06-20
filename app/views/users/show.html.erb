@@ -8,7 +8,7 @@
 	  <div class="row">
 	    <div class="col-md-8 col-md-offset-2">
 	      <div class="text-center">
-		    <%= attachment_image_tag @user, :profile_image, size: '200x200', format: 'jpeg', class: "img-circle", fallback: "no_image.png", size: '200x200',class: "img-circle" %>
+		    <%= attachment_image_tag @user, :profile_image, :fill, 200, 200, format: 'jpeg', class: "img-circle", fallback: "no_image.png", size: '200x200',class: "img-circle" %>
 		    <div><span class="glyphicon glyphicon-user" aria-hidden="true"></span><strong>ユーザー名</strong><br>
 		    <%= @user.name %></div>
 			<div>
@@ -42,7 +42,7 @@
 	  	<% if @bests_user.present? %>
 	      <% @bests_user.each do |best| %>
 		  <div class="mr-15 block"><%= link_to best_path(best) do %>
-		    <%= attachment_image_tag best, :best_image, :fill, 250, 200, class: "pointer", format: 'jpeg', fallback: "no_image.png", size:'250x200' %>
+		    <%= attachment_image_tag best, :best_image, :fill, 250, 200, format: 'jpeg', class: "pointer", fallback: "no_image.png", size:'250x200' %>
 		    <% end %>
 		    <p class="well well-sm lead"><%= best.genre %></p>
 		    <div class="panel panel-default">

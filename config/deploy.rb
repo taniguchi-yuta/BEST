@@ -6,7 +6,7 @@ set :repo_url, "git@github.com:taniguchi-yuta/BEST.git"
 set :deploy_to, "/home/ec2-user/BEST"
 set :rbenv_ruby, '2.5.7'
 set :linked_files, %w{config/master.key .env}
-append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
+append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system", "public/storage"
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 

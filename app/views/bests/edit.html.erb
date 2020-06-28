@@ -17,7 +17,7 @@
 		<div class="form-group">
 		  <%= f.label :"BEST名称" %><br />
 		  <%= render 'shares/error', model: @best %>
-		  <%= f.text_field :best_name, autofocus: true, class:"form-control", placeholder:"BEST名称"%>
+		  <%= f.text_field :best_name, autofocus: true, class:"form-control", placeholder:"BEST名称（15文字以内）"%>
 		</div>
 		<div class="form-group">
 		  <%= f.label :"URL" %><br />
@@ -29,7 +29,7 @@
 		</div>
 		<div class="form-group">
 	      <%= f.label :"紹介文" %><br />
-		  <%= f.text_area :recommend, class:"form-control", rows: 5, placeholder:"紹介文"%>
+		  <%= f.text_area :recommend, class:"form-control", rows: 5, placeholder:"紹介文（200文字以内）"%>
 		</div>
 		<%= f.submit "更新する", class: "btn btn-lg btn-block btn-success" %>
 	  </div>

@@ -59,7 +59,7 @@
         <div class="comment-form mt-15 mb-70">
           <% if user_signed_in? %>
           <%= form_for [@best, @best_comment], data: {remote: true} do |f| %>
-          <%= f.text_area :comment, class:"form-control",rows: 3, placeholder:"コメント" %>
+          <%= f.text_area :comment, class:"form-control",rows: 3, placeholder:"コメント（100文字以内）" %>
           <%= f.submit 'コメントする', class: "btn btn-lg btn-block btn-success" %>
           <% end %>
         </div>

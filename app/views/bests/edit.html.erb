@@ -15,12 +15,12 @@
           </div>
       	</div>
 		<div class="form-group">
-		  <%= f.label :"BEST名称" %><br />
+		  <%= f.label :BEST名称, "BEST名称" %><br />
 		  <%= render 'shares/error', model: @best %>
 		  <%= f.text_field :best_name, autofocus: true, class:"form-control", placeholder:"BEST名称（15文字以内）"%>
 		</div>
 		<div class="form-group">
-		  <%= f.label :"URL" %><br />
+		  <%= f.label :URL, "URL" %><br />
 		  <%= f.text_field :best_url, autofocus: true, class:"form-control", placeholder:"URL"%>
 		</div>
 		<div class="form-group">

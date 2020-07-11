@@ -120,6 +120,9 @@
 }
 .modal-footer {
     border-top: none;
+    .btn {
+      margin-bottom: 5px;
+    }
 }
 }
 html,body{

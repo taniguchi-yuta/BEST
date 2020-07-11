@@ -19,7 +19,7 @@
                     <% if best.user.sex.blank? %>
                       <span class="label label-default">性別未設定</span>
                     <% else %>
-                      <% case @user.sex %>
+                      <% case best.user.sex %>
                       <% when 'male' %>
                       <span class="label label-primary">男性</span>
                       <% when 'female' %>

@@ -30,7 +30,7 @@
 
 ## 設計書
 ### AWSインフラ設計書
-https://docs.google.com/spreadsheets/d/1j1iNymT3VfOGbmUFEDs-ESC6ZMFIHZaF2eJWg9XQqg8/edit#gid=0
+https://docs.google.com/spreadsheets/d/1j1iNymT3VfOGbmUFEDs-ESC6ZMFIHZaF2eJWg9XQqg8/edit?usp=sharing
 
 ## 機能一覧
 - **ユーザー機能**
